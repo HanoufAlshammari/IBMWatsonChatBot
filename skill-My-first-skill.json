@@ -1,0 +1,296 @@
+{
+  "intents": [
+    {
+      "intent": "thank_you",
+      "examples": [
+        {
+          "text": "thank you"
+        },
+        {
+          "text": "appreciate it"
+        },
+        {
+          "text": "cheers"
+        },
+        {
+          "text": "thx"
+        },
+        {
+          "text": "thanks"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "ClickButton",
+      "examples": [
+        {
+          "text": "move backward"
+        },
+        {
+          "text": "turn left"
+        },
+        {
+          "text": "stop"
+        },
+        {
+          "text": "turn right"
+        },
+        {
+          "text": "move forward"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Hello",
+      "examples": [
+        {
+          "text": "good evening"
+        },
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "good morning"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "goodbyes",
+      "examples": [
+        {
+          "text": "good bye"
+        },
+        {
+          "text": "see you"
+        },
+        {
+          "text": "talk to you soon"
+        },
+        {
+          "text": "bye"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "hello",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "hello",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "JOKE",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "knock knock",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Thank You",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You're welcome. Please let me know if you need anything else."
+              },
+              {
+                "text": "My pleasure."
+              },
+              {
+                "text": "No problem. Let me know if there is anything else I can help with."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1595140754234",
+      "conditions": "#thank_you",
+      "dialog_node": "node_8_1595141191985",
+      "previous_sibling": "node_10_1595140779812"
+    },
+    {
+      "type": "standard",
+      "title": "ClickB",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "you can click any button on the control panel to move the robot "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1595140754234",
+      "conditions": "#ClickButton",
+      "dialog_node": "node_5_1595145676848",
+      "previous_sibling": "node_4_1595141541557"
+    },
+    {
+      "type": "standard",
+      "title": "GoodByes",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Nice talking to you today."
+              },
+              {
+                "text": "Have a nice day."
+              },
+              {
+                "text": "Goodbye."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1595140754234",
+      "conditions": "#goodbyes",
+      "dialog_node": "node_4_1595141541557",
+      "previous_sibling": "node_8_1595141191985"
+    },
+    {
+      "type": "standard",
+      "title": "Greetings",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi there. How can I help you?"
+              },
+              {
+                "text": "Hello. How may I assist you today?"
+              },
+              {
+                "text": "Hi. What can I help you with?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1595140754234",
+      "conditions": "#Hello",
+      "dialog_node": "node_10_1595140779812"
+    },
+    {
+      "type": "folder",
+      "title": "chit chat",
+      "dialog_node": "node_2_1595140754234",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              },
+              {
+                "text": "It looks like we are not quite getting each other today. Would you like to talk to a human agent instead? If so, please contact us at 555-123-4567 or email us at support\\@example.org."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_2_1595140754234",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
